@@ -80,7 +80,7 @@ let tree;
   playgroundContainer.style.visibility = 'visible';
 
   async function handleLanguageChange() {
-    const newLanguageName = 'javascript';
+    const newLanguageName = languageSelect.value;
     if (!languagesByName[newLanguageName]) {
       const url = `${LANGUAGE_BASE_URL}/tree-sitter-${newLanguageName}.wasm`
       languageSelect.disabled = true;
@@ -277,7 +277,7 @@ let tree;
         const startPosition = queryEditor.posFromIndex(error.index);
         const endPosition = {
           line: startPosition.line,
-          ch: startPosition.ch + (error.length || 1)
+          ch: startPosition.ch + (error.length || Infinity)
         };
 
         if (error.index === queryText.length) {
